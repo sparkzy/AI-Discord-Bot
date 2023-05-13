@@ -1,5 +1,5 @@
 # Use an official base image ex: build-stage
-FROM node:20-alpine AS build-stage
+FROM node:20-alpine AS development
 
 # Set the working directory
 WORKDIR /usr/src/app
@@ -16,7 +16,7 @@ COPY . .
 RUN npm run build
 
 # Start a new, final stage to keep the image light ex: production-stage
-FROM node:20-alpine AS production-stage
+FROM node:20-alpine AS production
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
@@ -27,7 +27,7 @@ COPY package*.json ./
 RUN npm ci --only=production
 
 # Copy only the built artifacts from the build stage
-COPY --from=build-stage /app/build ./build
+COPY --from=development /app/build ./build
 
 # Run as non-root user for better security
 USER node
@@ -36,7 +36,7 @@ USER node
 EXPOSE 8080
 
 # The command to run the application
-CMD [ "node", "build/index.js" ]
+CMD [ "node", "dist/index.js" ]
 
 # Add a healthcheck
 HEALTHCHECK --interval=5m --timeout=3s \

@@ -13,11 +13,11 @@ services:
     command: npm run dev
     environment:
       - NODE_ENV=development
-    env_file: .env.dev
+    env_file: .env
 
 volumes:
   node_modules:
 
-### docker compose -f docker-compose.dev.yaml up
-### docker compose -f docker-compose.dev.yaml up --build
+### docker compose -f docker-compose.dev.yml up
+### docker compose -f docker-compose.dev.yml up --build
 ### -d detatched mode
