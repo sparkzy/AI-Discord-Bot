@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "commit-msg: Validating commit message format..."
+BRANCH_NAME=$(git branch --show-current)
+COMMIT_MSG=$(cat "$1")
+
+if [[ $COMMIT_MSG != "$BRANCH_NAME"* ]]; then
+  echo "Error: Commit message must start with the branch name."
+  exit 1
+fi

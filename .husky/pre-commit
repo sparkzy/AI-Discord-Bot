@@ -1,4 +1,22 @@
 #!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+. "$(dirname "$0")/_/husky.sh"
 
+echo "pre-commit: Running test script..."
 npm test
+if [ $? -ne 0 ]; then
+    echo "Tests must pass before commit!"
+    exit 1
+fi
+
+echo "pre-commit: Checking for console.log in JavaScript/TypeScript files..."
+STAGED_JS_TS_FILES=$(git diff --cached --name-only -- '*.js' '*.ts')
+
+if [ -n "$STAGED_JS_TS_FILES" ]; then
+    FOUND_LOGS=$(echo "$STAGED_JS_TS_FILES" | xargs grep -n 'console.log' || true)
+
+    if [ -n "$FOUND_LOGS" ]; then
+        echo "console.log found in staged JavaScript/TypeScript files. Please remove before committing."
+        echo "$FOUND_LOGS"
+        exit 1
+    fi
+fi

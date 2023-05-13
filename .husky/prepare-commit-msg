@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Append a standard note to each commit message
+echo "\nSigned-off-by: $(git config user.name) <$(git config user.email)>" >> $1

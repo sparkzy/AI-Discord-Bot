@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "post-checkout: Validating branch name format..."
+BRANCH_NAME="$3"; 
+if echo "$BRANCH_NAME" | grep -E "[\^\$\.\[\]\*\+\?\{\}\(\)\\|]" >/dev/null 2>&1; then 
+    echo "Branch name contains special characters. Please use alphanumeric and hyphen characters only."; 
+    exit 1; 
+fi
+
+echo "Successfully checked out to $(git branch --show-current). Remember to install any new dependencies!"
