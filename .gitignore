@@ -1,0 +1,27 @@
+# Ignore environment files
+.env.dev
+.env.prod
+
+# Ignore node_modules directory
+node_modules/
+
+# Ignore build output or compiled files
+/build/
+/dist/
+/out/
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+
+# Ignore IDE-specific files and directories
+.vscode/
+.idea/
+
+# Ignore editor backup files
+*~
+
+# Ignore package-lock.json (use package.json instead)
+package-lock.json
+
+# Ignore any other files or directories specific to your project

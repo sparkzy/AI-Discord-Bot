@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: ./
+      target: development
+    volumes:
+      - ./:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
+    ports: 
+      - "${APP_PORT}:4000"
+    command: npm run dev
+    environment:
+      - NODE_ENV=development
+    env_file: .env.dev
+
+volumes:
+  node_modules:
+
+### docker compose -f docker-compose.dev.yaml up
+### docker compose -f docker-compose.dev.yaml up --build
+### -d detatched mode
