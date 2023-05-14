@@ -27,7 +27,7 @@ COPY package*.json ./
 RUN npm ci --only=production
 
 # Copy only the built artifacts from the build stage
-COPY --from=development /app/build ./build
+COPY --from=development /usr/src/app/dist ./dist
 
 # Run as non-root user for better security
 USER node
