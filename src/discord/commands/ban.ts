@@ -1,4 +1,4 @@
-import logger from "../../logger"
+import logger from "../../logger";
 import { Message } from "discord.js";
 import ICommand from "./ICommand";
 
@@ -16,7 +16,7 @@ class Ban implements ICommand {
      */
     constructor() {
         this.command = "ban";
-        this.commandPrefix = process.env.COMMAND_PREFIX || '/';
+        this.commandPrefix = process.env.COMMAND_PREFIX || "/";
     }
 
     /**
@@ -26,7 +26,7 @@ class Ban implements ICommand {
      */
     handle(message: Message): void {
         if (message.content.trim() === `${this.commandPrefix}${this.command}`) {
-            message.reply('Baning a user!');
+            message.reply("Baning a user!");
         }
     }
 }

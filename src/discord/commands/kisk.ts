@@ -1,4 +1,4 @@
-import logger from "../../logger"
+import logger from "../../logger";
 import { Message } from "discord.js";
 import ICommand from "./ICommand";
 
@@ -16,17 +16,17 @@ class Kick implements ICommand {
      */
     constructor() {
         this.command = "kick";
-        this.commandPrefix = process.env.COMMAND_PREFIX || '/';
+        this.commandPrefix = process.env.COMMAND_PREFIX || "/";
     }
 
     /**
      * Handles the kick command.
-     * When the kick command is triggered, the bot replies with a 'Kicking a user!' message.
+     * When the kick command is triggered, the bot replies with a "Kicking a user!" message.
      * @param message - The received message.
      */
     handle(message: Message): void {
         if (message.content.trim() === `/${this.command}`) {
-            message.reply('Kicking a user!');
+            message.reply("Kicking a user!");
         }
     }
 }

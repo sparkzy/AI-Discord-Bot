@@ -1,4 +1,3 @@
-import logger from "../../logger"
 import { Message } from "discord.js";
 import ICommand from "./ICommand";
 
@@ -16,17 +15,17 @@ class Mute implements ICommand {
      */
     constructor() {
         this.command = "mute";
-        this.commandPrefix = process.env.COMMAND_PREFIX || '/';
+        this.commandPrefix = process.env.COMMAND_PREFIX || "/";
     }
 
     /**
      * Handles the mute command.
-     * When the mute command is triggered, the bot replies with a 'Muting a user!' message.
+     * When the mute command is triggered, the bot replies with a "Muting a user!" message.
      * @param message - The received message.
      */
     handle(message: Message): void {
         if (message.content.trim() === `${this.commandPrefix}${this.command}`) {
-            message.reply('Muting a user!');
+            message.reply("Muting a user!");
         }
     }
 }

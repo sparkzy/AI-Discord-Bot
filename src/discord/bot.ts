@@ -1,5 +1,5 @@
 import { Client, Message, MessageReaction, PartialMessageReaction, PartialUser, User } from "discord.js";
-import logger from "../logger"
+import logger from "../logger";
 import { intents } from "./intents";
 import EventRegistry from "./events/eventRegistry";
 import MessageEvent from "./events/message";
@@ -53,7 +53,7 @@ export class Bot {
             if (discordToken === undefined) {
                 throw new Error("DISCORD_TOKEN is not set");
             }
-            logger.info("Discord token: " + discordToken)
+            logger.info("Discord token: " + discordToken);
             return discordToken;
         } catch (error: any) {
             logger.error(error.message);
@@ -85,15 +85,15 @@ export class Bot {
     public listen(): void {
         logger.info("Listening for messages...");
 
-        this.client.on('messageCreate', (message: Message) => {
-            const event = this.eventRegistry.getEvent('messageCreate');
+        this.client.on("messageCreate", (message: Message) => {
+            const event = this.eventRegistry.getEvent("messageCreate");
             if (event) {
                 event.handle(message);
             }
         });
 
-        this.client.on('messageReactionAdd', (reaction: MessageReaction | PartialMessageReaction, user: User | PartialUser) => {
-            const event = this.eventRegistry.getEvent('messageReactionAdd');
+        this.client.on("messageReactionAdd", (reaction: MessageReaction | PartialMessageReaction, user: User | PartialUser) => {
+            const event = this.eventRegistry.getEvent("messageReactionAdd");
             if (event) {
                 event.handle(reaction, user);
             }
@@ -101,4 +101,4 @@ export class Bot {
     }
 }
 
-export default Bot
+export default Bot;

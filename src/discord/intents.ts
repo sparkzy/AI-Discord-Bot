@@ -19,4 +19,4 @@ export const intents = [
     GatewayIntentBits.DirectMessageReactions,
     GatewayIntentBits.DirectMessageTyping,
     GatewayIntentBits.MessageContent
-] 
+];

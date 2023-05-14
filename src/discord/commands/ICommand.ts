@@ -1,4 +1,4 @@
-import { Message } from 'discord.js';
+import { Message } from "discord.js";
 
 /**
  * Interface ICommand represents expected fields and functions of a bot command. 
