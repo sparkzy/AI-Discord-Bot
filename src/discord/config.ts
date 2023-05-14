@@ -1,1 +1,0 @@
-// const { CLIENT_ID, GUILD_ID, DISCORD_TOKEN }
