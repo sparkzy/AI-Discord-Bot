@@ -1,7 +1,13 @@
 import { Message } from "discord.js";
 
 /**
- * Interface ICommand represents expected fields and functions of a bot command. 
+ * @file This contains file fields and/or functions for the ICommand.
+ *
+ * @module Discord
+ *
+ * Interface ICommand represents expected fields and functions of a bot command.
+ *
+ * @author Bobby McGetrick
  */
 interface ICommand {
     command: string;

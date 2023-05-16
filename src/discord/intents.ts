@@ -1,7 +1,9 @@
 import { GatewayIntentBits } from "discord.js";
 
 /**
- * intents is a list of intents that the bot will listen to.
+ * @file intents is a list of intents that the bot will listen to.
+ * @module Discord
+ * @Author Bobby McGetrick
  */
 export const intents = [
     GatewayIntentBits.Guilds,

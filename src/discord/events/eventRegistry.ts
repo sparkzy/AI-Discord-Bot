@@ -1,8 +1,14 @@
 import IEvent from "./IEvent";
 
 /**
+ * @file This contains file fields and/or functions for the EventRegistry.
+ *
+ * @module Discord
+ *
  * Class EventRegistry is used to register and execute bot events.
  * It stores events in a Map, allowing for fast access and execution.
+ *
+ * @author Bobby McGetrick
  */
 class EventRegistry {
     private events: Map<string, IEvent>;
@@ -17,6 +23,7 @@ class EventRegistry {
 
     /**
      * Registers a event to the registry.
+     * 
      * @param event - An object that implements the ICommand interface.
      */
     registerEvent(event: IEvent): void {
@@ -26,6 +33,7 @@ class EventRegistry {
     /**
      * Executes a event based on a received message.
      * If the event is registered, it calls the event"s handle method with the message.
+     * 
      * @param message - The received message.
      */
     getEvent(name: string): IEvent | undefined {

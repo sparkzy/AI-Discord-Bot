@@ -5,6 +5,14 @@ import ICommand from "./ICommand";
  * Class CommandRegistry is used to register and execute bot commands.
  * It stores commands in a Map, allowing for fast access and execution.
  */
+/**
+ * @file This contains file fields and/or functions for the CommandRegistry.
+ *
+ * Class CommandRegistry is used to register and execute bot commands.
+ * It stores commands in a Map, allowing for fast access and execution.
+ *
+ * @author Bobby McGetrick
+ */
 class CommandRegistry {
     private commands: Map<string, ICommand>;
 
@@ -18,6 +26,7 @@ class CommandRegistry {
 
     /**
      * Registers a command to the registry.
+     * 
      * @param command - An object that implements the ICommand interface.
      */
     registerCommand(command: ICommand): void {
@@ -27,12 +36,13 @@ class CommandRegistry {
     /**
      * Executes a command based on a received message.
      * If the command is registered, it calls the command"s handle method with the message.
+     * 
      * @param message - The received message.
      */
     executeCommand(message: Message): void {
-        const command = message.content.split(" ")[0].substring(1);    // Remove the leading slash
+        const command = message.content.split(" ")[0].substring(1);
         if (this.commands.has(command)) {
-            this.commands.get(command)!.handle(message);
+            this.commands.get(command)?.handle(message);
         }
     }
 }

@@ -27,3 +27,5 @@ package-lock.json
 
 # Ignore any other files or directories specific to your project
 */config.json
+coverage
+.nyc_output

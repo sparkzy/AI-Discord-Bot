@@ -1,6 +1,9 @@
 # Use an official base image ex: build-stage
 FROM node:20-alpine AS development
 
+ARG NODE_ENV=development
+ENV NODE_ENV=${NODE_ENV}
+
 # Set the working directory
 WORKDIR /usr/src/app
 

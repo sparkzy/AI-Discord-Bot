@@ -1,10 +1,15 @@
-import logger from "../../logger";
 import { Message } from "discord.js";
 import ICommand from "./ICommand";
 
 /**
- * Class Kick represents a bot command that kicks a user. 
+ * @file This contains file fields and/or functions for the Kick command.
+ *
+ * @module Discord
+ *
+ * Class Kick represents a bot command that kicks a user.
  * It implements the ICommand interface.
+ *
+ * @author Bobby McGetrick
  */
 class Kick implements ICommand {
     command: string;
@@ -22,7 +27,9 @@ class Kick implements ICommand {
     /**
      * Handles the kick command.
      * When the kick command is triggered, the bot replies with a "Kicking a user!" message.
+     * 
      * @param message - The received message.
+     * @todo Implement the kick command.
      */
     handle(message: Message): void {
         if (message.content.trim() === `/${this.command}`) {
