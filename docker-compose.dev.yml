@@ -7,16 +7,13 @@ services:
       target: development
     volumes:
       - ./:/usr/src/app
-      - node_modules:/usr/src/app/node_modules
+      - /usr/src/app/node_modules
     ports: 
       - "${APP_PORT}:4000"
     command: npm run dev
     environment:
       - NODE_ENV=development
     env_file: .env
-
-volumes:
-  node_modules:
 
 ### docker compose -f docker-compose.dev.yml up
 ### docker compose -f docker-compose.dev.yml up --build
