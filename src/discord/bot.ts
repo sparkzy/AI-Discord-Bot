@@ -75,7 +75,7 @@ export class Bot {
      * Starts the bot by logging in using the Discord token.
      */
     public start(): Promise<string | void> {
-        return this.client.login(this.token);
+        return this.client.login(this.token).then(() => this.ready());
     }
 
     /**
@@ -91,7 +91,7 @@ export class Bot {
      * When a message is received, it checks if the message starts with the command prefix,
      * and if so, it executes the command.
      */
-    private listen(): void {
+    private async listen(): Promise<void> {
         this.client.on("messageCreate", (message: Message) => {
             const event = this.eventRegistry.getEvent("messageCreate");
             if (event) {
