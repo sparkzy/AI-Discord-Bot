@@ -75,7 +75,7 @@ export class Bot {
      * Starts the bot by logging in using the Discord token.
      */
     public start(): Promise<string | void> {
-        return this.client.login(this.token).then(() => this.ready());
+        return this.client.login(this.token);
     }
 
     /**

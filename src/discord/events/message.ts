@@ -6,6 +6,8 @@ import Kick from "../commands/kick";
 import Mute from "../commands/mute";
 import Ping from "../commands/ping";
 import IEvent from "./IEvent";
+import IMessageQueue from "../../messaging/iMessageQueue";
+import RedisMessageQueue from "../../messaging/redis";
 
 /**
  * @file This contains file fields and/or functions for the Message event.
@@ -20,14 +22,16 @@ import IEvent from "./IEvent";
 const logger = createLogger(module);
 class MessageEvent implements IEvent {
     name: string;
-    private commandPrefix: string = process.env.COMMAND_PREFIX || "/";
+    private commandPrefix: string;
     private commandRegistry: CommandRegistry;
+    private messageQueue: IMessageQueue;
 
     constructor() {
         this.name = "messageCreate";
         this.commandPrefix = process.env.COMMAND_PREFIX || "/";
         this.commandRegistry = new CommandRegistry();
         this.registerCommands();
+        this.messageQueue = new RedisMessageQueue();
     }
 
     /**
