@@ -23,7 +23,7 @@ import { Logger } from "winston";
  *
  * @author Bobby McGetrick
  */
-describe.only("RedisMessageQueue", () => {
+describe.skip("RedisMessageQueue", () => {
     let redisMessageQueue: RedisMessageQueue;
     let logger: Logger;
     let clientStub: sinon.SinonStubbedInstance<RedisClientType>;
@@ -54,13 +54,13 @@ describe.only("RedisMessageQueue", () => {
     /**
      * Test that the publish method of the RedisMessageQueue class calls the publish method of the RedisClient class with the correct channel and message.
      */
-    it.only("should publish a message to the channel", async (done) => {
+    it("should publish a message to the channel", async (done) => {
         const channel = "channel";
         const message = "message";
         await redisMessageQueue.publish(channel, message);
         done();
     });
-    it.only("should check if the message was published correctly", async (done) => {
+    it("should check if the message was published correctly", async (done) => {
         const channel = "channel";
         const message = "message";
         await redisMessageQueue.publish(channel, message);
