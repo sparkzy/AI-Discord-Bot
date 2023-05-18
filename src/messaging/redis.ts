@@ -77,7 +77,6 @@ class RedisMessageQueue implements IMessageQueue {
     async publish(channel: string, message: string): Promise<void> {
         try {
             await this.publisher.publish(channel, message);
-            this.logger.info(`Published message: ${message} to channel: ${channel}`);
         } catch (error) {
             this.logger.error("Error occurred during publishing: ", error);
         }
@@ -92,7 +91,6 @@ class RedisMessageQueue implements IMessageQueue {
     async subscribe(channel: string, callback: (message: string) => void): Promise<void> {
         try {
             await this.subscriber.subscribe(channel, (message) => {
-                this.logger.info(`Received message: ${message} from channel: ${channel}`);
                 try {
                     callback(message);
                 } catch (error) {

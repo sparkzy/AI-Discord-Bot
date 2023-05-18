@@ -4,15 +4,16 @@ services:
   api:
     build:
       context: ./
-      target: development
+      target: testing
     volumes:
       - ./:/usr/src/app
+      - ./coverage/lcov-report/index.html:/usr/src/app/coverage/lcov-report/index.html
       - /usr/src/app/node_modules
     ports: 
       - "${APP_PORT}:${APP_PORT}"
     command: npm test
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=test
     env_file: .env
     depends_on:
       redis:
