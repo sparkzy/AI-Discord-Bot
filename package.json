@@ -4,7 +4,7 @@
   "description": "A Discrd bot that uses AI to talk to people.",
   "main": "index.js",
   "scripts": {
-    "test": "nyc mocha -r ts-node/register --timeout 10000 **/*.test.ts --exit && open coverage/lcov-report/index.html && npm posttest",
+    "test": "nyc mocha -r ts-node/register **/*.test.ts --exit && open coverage/lcov-report/index.html && npm posttest",
     "posttest": "open coverage/lcov-report/index.html",
     "dev": "ts-node-dev --poll src/index.ts",
     "build": "rimraf ./dist && tsc",

@@ -36,7 +36,7 @@ class MessageEvent implements IEvent {
         this.registerCommands();
         this.messageQueue = RedisMessageQueue.getInstance();
         this.messageQueue.subscribe("discord", (message) => {
-            logger.debug(`Received message from queue: ${message}`);
+            // Do nothing
         });
     }
 
