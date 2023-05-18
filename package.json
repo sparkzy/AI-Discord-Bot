@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "nyc mocha -r ts-node/register **/*.test.ts --exit && open coverage/lcov-report/index.html && npm posttest",
-    "posttest": "open coverage/lcov-report/index.html",
+    "posttest": "start coverage/lcov-report/index.html",
     "dev": "ts-node-dev --poll src/index.ts",
     "build": "rimraf ./dist && tsc",
     "start": "npm run build && node dist/index.js"
