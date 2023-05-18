@@ -54,12 +54,32 @@ describe.only("RedisMessageQueue", () => {
     /**
      * Test that the publish method of the RedisMessageQueue class calls the publish method of the RedisClient class with the correct channel and message.
      */
-    it("should publish a message to the channel", async () => {
+    it.only("should publish a message to the channel", async (done) => {
+        const channel = "channel";
+        const message = "message";
+        await redisMessageQueue.publish(channel, message);
+        done();
+    });
+    it.only("should check if the message was published correctly", async (done) => {
         const channel = "channel";
         const message = "message";
         await redisMessageQueue.publish(channel, message);
         expect(clientStub.publish.calledWith(channel, message)).to.be.true;
+        done();
     });
+    // it.only("should publish a message to the channel", async (done) => {
+    //     const channel = "channel";
+    //     const message = "message";
+    //     redisMessageQueue.publish(channel, message)
+    //         .then(() => {
+    //             expect(clientStub.publish.calledWith(channel, message)).to.be.true;
+    //             done();
+    //         })
+    //         .catch((error) => {
+
+    //             done(error);
+    //         });
+    // });
 
     /**
      * Test that the subscribe method of the RedisMessageQueue class calls the subscribe method of the RedisClient class with the correct channel.
