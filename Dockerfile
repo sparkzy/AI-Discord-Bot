@@ -18,6 +18,18 @@ COPY . .
 # Build the application
 RUN npm run build
 
+# Create a separate stage for testing
+FROM node:20-alpine AS testing
+
+WORKDIR /usr/src/app
+
+# Install all dependencies, not just production ones, for running tests
+COPY package*.json ./
+RUN npm install
+
+# Copy all source files from the build stage
+COPY --from=development /usr/src/app ./
+
 # Start a new, final stage to keep the image light ex: production-stage
 FROM node:20-alpine AS production
 
