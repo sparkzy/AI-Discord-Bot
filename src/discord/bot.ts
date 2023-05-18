@@ -39,8 +39,6 @@ export class Bot {
         this.token = this.loadToken();
         this.eventRegistry = eventRegistry;
         this.registerEvents();
-
-        this.client.once("ready", this.ready.bind(this));
     }
 
     /**
@@ -75,7 +73,7 @@ export class Bot {
      * Starts the bot by logging in using the Discord token.
      */
     public start(): Promise<string | void> {
-        return this.client.login(this.token);
+        return this.client.login(this.token).then(() => this.ready());
     }
 
     /**

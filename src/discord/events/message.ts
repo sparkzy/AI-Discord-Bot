@@ -12,10 +12,13 @@ import RedisMessageQueue from "../../messaging/redis";
 /**
  * @file This contains file fields and/or functions for the Message event.
  *
- * @module Discord
- *
  * Class MessageEvent represents a bot event that triggers when a message is received by the bot.
  * It implements the IEvent interface.
+ *
+ * This class is also responsible for initializing and registering commands, subscribing to messages 
+ * from a Redis messaging queue, and handling received Discord messages. If a received Discord 
+ * message starts with a command prefix, the corresponding command is executed. If not, the message 
+ * is published to a Redis messaging queue.
  *
  * @author Bobby McGetrick
  */
@@ -31,7 +34,10 @@ class MessageEvent implements IEvent {
         this.commandPrefix = process.env.COMMAND_PREFIX || "/";
         this.commandRegistry = new CommandRegistry();
         this.registerCommands();
-        this.messageQueue = new RedisMessageQueue();
+        this.messageQueue = RedisMessageQueue.getInstance();
+        this.messageQueue.subscribe("discord", (message) => {
+            logger.debug(`Received message from queue: ${message}`);
+        });
     }
 
     /**
@@ -54,11 +60,13 @@ class MessageEvent implements IEvent {
      * @param param description
      * @returns description
      */
-    handle(message: Message) {
+    async handle(message: Message) {
         logger.info("Message received! " + message.author.tag + ": " + message.content);
         if (message.author.bot) return;
         if (message.content.startsWith(this.commandPrefix)) {
             this.commandRegistry.executeCommand(message);
+        } else {
+            await this.messageQueue.publish("discord", message.content);
         }
     }
 }
