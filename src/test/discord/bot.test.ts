@@ -30,7 +30,6 @@ import { intents } from "../../discord/intents";
  */
 describe("Bot", () => {
     const originalNodeEnv = process.env.NODE_ENV;
-    const originalDiscordToken = process.env.DISCORD_TOKEN;
 
     let bot: Bot;
     let logger: Logger;
@@ -48,8 +47,6 @@ describe("Bot", () => {
     beforeEach(() => {
         const token = "discordToken";
         process.env.DISCORD_TOKEN = token;
-        const node_env = "test";
-        process.env.NODE_ENV = node_env;
         clientStub = sinon.createStubInstance(Client);
         eventRegistryStub = sinon.createStubInstance(EventRegistry);
         bot = new Bot(clientStub, eventRegistryStub);
@@ -67,8 +64,7 @@ describe("Bot", () => {
      */
     afterEach(() => {
         sinon.restore();
-        process.env.NODE_ENV = originalNodeEnv;
-        process.env.DISCORD_TOKEN = originalDiscordToken;
+        process.env.DISCORD_TOKEN = originalNodeEnv;
     });
 
     /**

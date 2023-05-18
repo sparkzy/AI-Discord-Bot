@@ -1,9 +1,11 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# Regular expression to validate commit message format (e.g., "ABC-123: Commit message")
-echo "pre-push: Running tests before push..."
-npm test
+echo "pre-push: Building Docker image and running tests before push..."
+
+# Run your tests inside a Docker container using docker-compose
+docker-compose up --exit-code-from api
+
 if [ $? -ne 0 ]; then
     echo "Tests must pass before push!"
     exit 1

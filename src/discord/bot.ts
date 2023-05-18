@@ -39,6 +39,8 @@ export class Bot {
         this.token = this.loadToken();
         this.eventRegistry = eventRegistry;
         this.registerEvents();
+
+        this.client.once("ready", this.ready.bind(this));
     }
 
     /**
